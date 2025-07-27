@@ -14,7 +14,7 @@ class DocLogoAndName extends StatelessWidget {
       children: [
         AppImage('doc_logo.png',height: 38.h,width: 38.w,),
         SizedBox(width: 8.w,),
-        Text("DocDoc",style: TextStyles.font24Black700Weight,)
+        Text("DocDoc",style: TextStyles.font24BlackBold,)
         
       ],
     );
