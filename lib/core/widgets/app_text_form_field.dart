@@ -13,6 +13,8 @@ class AppTextFormField extends StatefulWidget {
   final String hintText;
   final bool isObscureText;
   final Color? fillColor;
+  final TextEditingController? controller;
+  final Function(String?) validator;
 
   const AppTextFormField(
       {super.key,
@@ -23,7 +25,8 @@ class AppTextFormField extends StatefulWidget {
       this.hintStyle,
       required this.hintText,
       this.isObscureText=false,
-      this.fillColor});
+      this.fillColor,  this.controller,
+        required this.validator});
 
   @override
   State<AppTextFormField> createState() => _AppTextFormFieldState();
@@ -34,6 +37,7 @@ class _AppTextFormFieldState extends State<AppTextFormField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: widget.controller,
       obscureText:widget.isObscureText && isObscureText,
       decoration: InputDecoration(
         isDense: true,
@@ -47,6 +51,15 @@ class _AppTextFormFieldState extends State<AppTextFormField> {
               BorderSide(color: ColorsManager.lighterGray, width: 1.3.w),
           borderRadius: BorderRadius.circular(16.r),
         ),
+        errorBorder:OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.red, width: 1.3.w),
+          borderRadius: BorderRadius.circular(16.r),
+        ),
+         focusedErrorBorder:OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.red, width: 1.3.w),
+          borderRadius: BorderRadius.circular(16.r),
+        ),
+
         hintStyle: widget.hintStyle ?? TextStyles.font14LightGrayRegular,
         hintText: widget.hintText,
         suffixIcon: widget.isObscureText ? GestureDetector(
@@ -60,6 +73,9 @@ class _AppTextFormFieldState extends State<AppTextFormField> {
         filled: true,
       ),
       style: TextStyles.font14DarkBlueMedium,
+      validator: (value){
+        return widget.validator(value);
+      },
     );
   }
 }

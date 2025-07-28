@@ -24,7 +24,7 @@ if (flutterVersionName == null) {
 
 android {
     namespace "com.MTS.esay_doctor"
-    compileSdkVersion flutter.compileSdkVersion
+    compileSdkVersion 34
     ndkVersion flutter.ndkVersion
 
     compileOptions {
