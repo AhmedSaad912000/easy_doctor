@@ -1,10 +1,11 @@
+import 'package:esay_doctor/core/helper/extensions.dart';
 import 'package:esay_doctor/features/onboarding/ui/widgets/doc_logo_and_name.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import '../../../core/routing/routes.dart';
 import '../../../core/theming/styles.dart';
+import '../../../core/widgets/app_text_button.dart';
 import 'widgets/doctor_image_and_text.dart';
-import 'widgets/get_started_button.dart';
 
 class OnBoardingScreen extends StatelessWidget {
   const OnBoardingScreen({super.key});
@@ -33,7 +34,16 @@ class OnBoardingScreen extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 30.h,),
-                GetStartedButton(),
+                Padding(
+                  padding:  EdgeInsets.symmetric(horizontal: 24.w),
+                  child: AppTextButton(
+                      buttonText: "Get Started",
+                      textStyle: TextStyles.font16WhiteSemiBold,
+                      onPressed: () {
+                        context.pushNamedAndRemoveUntil(Routes.loginScreen,predicate: (route) => false,);
+                      }),
+                ) ,
+
               ],
             ),
           ),

@@ -8,6 +8,7 @@ import 'package:esay_doctor/features/sign_up/ui/widgets/sign_up_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../core/widgets/auth_header.dart';
 import '../../login/ui/widgets/terms_and_condition_text.dart';
 import '../logic/sign_up_bloc.dart';
 import '../logic/sign_up_event.dart';
@@ -36,16 +37,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    'Create Account',
-                    style: TextStyles.font24BlueBold,
-                  ),
-                  verticalSpace(8),
-                  Text(
-                    "Sign up now and start exploring all that our\n app has to offer. We're excited to welcome\n you to our community!",
-                    style: TextStyles.font14GrayRegular,
-                  ),
-                  verticalSpace(36),
+                AuthHeader(
+                  text1:'Create Account',
+                  text2: "Sign up now and start exploring all that our\n app has to offer. We're excited to welcome\n you to our community!",
+                ),
                   SignUpForm(
                     nameController: nameController,
                     numberController: numberController,

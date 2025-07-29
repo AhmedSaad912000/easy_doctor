@@ -33,7 +33,7 @@ class _LoginBlocListenerState extends State<LoginBlocListener> {
             );
           }, success: (loginResponse) {
             context.pop();
-            context.pushNamed(Routes.homeScreen);
+            context.pushNamedAndRemoveUntil(Routes.homeScreen,predicate: (route) => false,);
           }, error: (error) {
             setupErrorState(context, error);
           });

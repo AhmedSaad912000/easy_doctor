@@ -84,7 +84,7 @@ void showSuccessDialog(BuildContext context) {
       ),
       actions:<Widget> [
         TextButton(onPressed: (){
-          context.pushNamed(Routes.loginScreen);
+          context.pushNamedAndRemoveUntil(Routes.loginScreen,predicate: (route) => false,);
         }, child:Text('Continue'),
           style:TextButton.styleFrom(
           foregroundColor: Colors.white,

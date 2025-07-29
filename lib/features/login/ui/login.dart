@@ -2,6 +2,7 @@ import 'package:esay_doctor/core/helper/extensions.dart';
 import 'package:esay_doctor/core/helper/spacing.dart';
 import 'package:esay_doctor/core/theming/styles.dart';
 import 'package:esay_doctor/core/widgets/app_text_button.dart';
+import 'package:esay_doctor/core/widgets/auth_header.dart';
 import 'package:esay_doctor/features/login/logic/login_bloc.dart';
 import "package:esay_doctor/features/login/ui/widgets/don't_have_account_text.dart";
 import 'package:esay_doctor/features/login/ui/widgets/email_and_password.dart';
@@ -36,16 +37,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                  Text(
-                  'Welcome Back',
-                  style: TextStyles.font24BlueBold,
-                ),
-                verticalSpace(8),
-                Text(
-                  'We\'re excited to have you back, can\'t wait to see what you\'ve been up to since you last logged in.',
-                  style: TextStyles.font14GrayRegular,
-                ),
-                verticalSpace(36),
+                    AuthHeader(text1:'Welcome Back' , text2: 'We\'re excited to have you back, can\'t wait to see what you\'ve been up to since you last logged in.'),
                     EmailAndPassword(
                       emailController: emailController,
                       passwordController: passwordController,
