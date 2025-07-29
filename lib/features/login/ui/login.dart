@@ -1,14 +1,17 @@
+import 'package:esay_doctor/core/helper/extensions.dart';
 import 'package:esay_doctor/core/helper/spacing.dart';
 import 'package:esay_doctor/core/theming/styles.dart';
 import 'package:esay_doctor/core/widgets/app_text_button.dart';
 import 'package:esay_doctor/features/login/logic/login_bloc.dart';
-import 'package:esay_doctor/features/login/ui/widgets/already_have_account_text.dart';
+import "package:esay_doctor/features/login/ui/widgets/don't_have_account_text.dart";
 import 'package:esay_doctor/features/login/ui/widgets/email_and_password.dart';
 import 'package:esay_doctor/features/login/ui/widgets/login_bloc_listener.dart';
 import 'package:esay_doctor/features/login/ui/widgets/terms_and_condition_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
+import '../../../core/routing/routes.dart';
 import '../logic/login_event.dart';
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -53,20 +56,20 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: Text(
                       "Forgot Password?", style: TextStyles.font13BlueRegular,)),
                 verticalSpace(40),
-                AppTextButton(buttonText: "Login",
+                AppTextButton(
+                    buttonText: "Login",
                     textStyle: TextStyles.font16WhiteSemiBold,
                     onPressed: () {
                       if (formKey.currentState!.validate()) {
-                        bloc.add(LoginEvent.login(
-                          email: emailController.text,
-                          password: passwordController.text,
-                        ));
+                        context.read<LoginBloc>().add(LoginEvent.login(email: emailController.text, password: passwordController.text));
+                        print("Login event dispatched");
+
                       }
                     }) ,
                     verticalSpace(18),
                     TermsAndConditionText(),
                     verticalSpace(60),
-                    AlreadyHaveAccountText(),
+                    DontHaveAccountText(),
                     LoginBlocListener(),
 
 

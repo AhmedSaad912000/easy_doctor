@@ -5,8 +5,6 @@ import 'package:esay_doctor/core/theming/styles.dart';
 import 'package:esay_doctor/features/login/logic/login_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get_it/get_it.dart';
-
 import '../../logic/login_bloc.dart';
 
 class LoginBlocListener extends StatefulWidget {
@@ -17,12 +15,10 @@ class LoginBlocListener extends StatefulWidget {
 }
 
 class _LoginBlocListenerState extends State<LoginBlocListener> {
-  final bloc = GetIt.I<LoginBloc>();
 
   @override
   Widget build(BuildContext context) {
     return BlocListener<LoginBloc, LoginState>(
-        bloc: bloc,
         listenWhen: (previous, current) =>
             current is Loading || current is Success || current is Error,
         listener: (context, state) {

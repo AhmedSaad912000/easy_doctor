@@ -9,6 +9,22 @@ class InputValidator{
     }
 
   }
+  static String? name(String?value){
+    if(value==null || value.isEmpty){
+      return "Please Enter  name";
+    }else{
+      return null;
+    }
+
+  }
+  static String? phone(String?value){
+    if(value==null || value.isEmpty|| !AppRegex.isPhoneNumberValid(value)){
+      return "Please Enter a valid phone Number";
+    }else{
+      return null;
+    }
+
+  }
   static String? password(String?value) {
     if (value==null || value.isEmpty) {
       return "Please Enter a valid Password ";
