@@ -26,4 +26,9 @@ class AppRegex {
   static bool hasMinLength(String password) {
     return RegExp(r'^.{8,}$').hasMatch(password);
   }
+  static  bool isPhoneNumberValid(String phone) {
+    final regex = RegExp(r'^(?:\+20|0)?1[0125][0-9]{8}$');
+    return regex.hasMatch(phone);
+  }
+
 }
