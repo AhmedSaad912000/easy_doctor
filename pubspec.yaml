@@ -3,7 +3,7 @@ description: "Booking doctor"
 publish_to:
 
 
-version: 1.0.0+1
+version: 1.0.2+1
 
 environment:
   sdk: '>=3.2.6 <4.0.0'
@@ -28,10 +28,11 @@ dependencies:
   pretty_dio_logger: ^1.4.0
   intl: ^0.18.1
   easy_localization: ^3.0.7+1
-  flutter_native_splash: ^2.3.11
+  flutter_native_splash: ^2.3.10
   flutter_svg: ^2.0.10+1
   flutter_screenutil: ^5.9.3
   build_runner: ^2.4.9
+  firebase_core: ^2.27.0
 
 
 
@@ -43,6 +44,12 @@ dev_dependencies:
 
 
   flutter_lints: ^2.0.0
+  flutter_launcher_icons: ^0.13.1
+flutter_launcher_icons:
+    android: true
+    ios: true
+    image_path: "assets/images/doc_logo.png"
+
 
 
 

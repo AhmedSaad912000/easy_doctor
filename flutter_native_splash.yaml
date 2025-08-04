@@ -3,8 +3,12 @@ flutter_native_splash:
   image: assets/images/splash_screen.png
   android: true
   ios: true
+  preserve: true
+
 
   android_12:
     color: "#ffffff"
     image: assets/images/splash_screen.png
+    preserve: true
+
 
