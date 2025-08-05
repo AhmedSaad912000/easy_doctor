@@ -2,37 +2,28 @@ import 'package:esay_doctor/core/theming/colors.dart';
 import 'package:esay_doctor/core/theming/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../../core/helper/spacing.dart';
 import '../../../../core/widgets/app_image.dart';
+import '../../data/models/specialization_response_model.dart';
+
+part 'doctors_speciality_list_view_item.dart';
 
 class DoctorsSpecialityListView extends StatelessWidget {
-  const DoctorsSpecialityListView({super.key});
+  final List<SpecializationsData?> specializationsDataList;
+
+  const DoctorsSpecialityListView(
+      {super.key, required this.specializationsDataList});
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 100.h,
       child: ListView.separated(
-        scrollDirection: Axis.horizontal,
-          itemBuilder: (context, index) => Column(
-            children: [
-              CircleAvatar(
-                radius: 28.r,
-                backgroundColor: ColorsManager.lightBlue,
-                child: Padding(
-                  padding:  EdgeInsets.all(16.r),
-                  child: AppImage("spciality.jpg"),
-                ),
-              ),
-              verticalSpace(8),
-              Text("Specialsation",style: TextStyles.font12DarkBlueRegular,)
-            ],
-          ),
-          separatorBuilder: (context, index) => SizedBox(
-                width: 24.w,
-              ),
-          itemCount: 8),
+          scrollDirection: Axis.horizontal,
+          itemBuilder: (context, index) =>
+              DoctorsSpecialityListViewItem(itemIndex: index,
+                specializationsData: specializationsDataList[index],),
+          separatorBuilder: (context, index) => SizedBox(width: 24.w,),itemCount:specializationsDataList.length),
     );
   }
 }

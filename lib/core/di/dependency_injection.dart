@@ -1,6 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:esay_doctor/core/networking/api_service.dart';
 import 'package:esay_doctor/core/networking/dio_factory.dart';
+import 'package:esay_doctor/features/home/data/apis/home_api_service.dart';
+import 'package:esay_doctor/features/home/data/repos/home_repo.dart';
+import 'package:esay_doctor/features/home/logic/home_bloc.dart';
 import 'package:esay_doctor/features/login/data/repo/login_repo.dart';
 import 'package:esay_doctor/features/login/logic/login_bloc.dart';
 import 'package:esay_doctor/features/sign_up/data/repo/sign_up_repo.dart';
@@ -18,5 +21,8 @@ Future<void> setupGetIt()async{
   // sign up
   getIt.registerLazySingleton<SignupRepo>(() => SignupRepo(getIt()));
   getIt.registerFactory<SignUpBloc>(() => SignUpBloc(getIt()));
+  // home
+  getIt.registerLazySingleton<HomeApiService>(() => HomeApiService(dio));
+  getIt.registerLazySingleton<HomeRepo>(() => HomeRepo(getIt()));
 
 }
