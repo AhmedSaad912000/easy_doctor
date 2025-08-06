@@ -2,13 +2,12 @@ import 'package:esay_doctor/core/routing/app_route.dart';
 import 'package:esay_doctor/core/theming/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import 'core/helper/constants.dart';
 import 'core/routing/routes.dart';
 
 class DocApp extends StatelessWidget{
   final AppRouter appRouter;
   const DocApp({super.key, required this.appRouter});
-
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
@@ -21,7 +20,7 @@ class DocApp extends StatelessWidget{
           scaffoldBackgroundColor: Colors.white,
         ),
         debugShowCheckedModeBanner: false,
-        initialRoute: Routes.onBoardingScreen,
+        initialRoute: isLoggedInUser?Routes.homeScreen:Routes.onBoardingScreen,
         onGenerateRoute: appRouter.generateRoute,
       ),
 

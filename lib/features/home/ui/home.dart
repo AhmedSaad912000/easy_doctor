@@ -10,7 +10,7 @@ import 'widgets/doctor_speciality_list_view.dart';
 import 'widgets/doctor_speciality_see_all.dart';
 import 'widgets/doctors_list_view.dart';
 import 'widgets/home_top_bar.dart';
-part 'specializations_and_doctors_bloc_builder.dart';
+part 'widgets/specializations_and_doctors_bloc_builder.dart';
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
@@ -29,7 +29,7 @@ class HomeScreen extends StatelessWidget {
               verticalSpace(28),
               DoctorsSpecialitySeeAll(),
               verticalSpace(16),
-              SpecializationAndDoctorsBlocBuilder(),
+              SpecializationsAndDoctorsBlocBuilder(),
 
             ],
           ),

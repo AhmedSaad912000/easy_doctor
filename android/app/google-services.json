@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "37178977359",
+    "project_id": "easy-doctor-fae4d",
+    "storage_bucket": "easy-doctor-fae4d.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:37178977359:android:f4c29e5837a62d56018e3a",
+        "android_client_info": {
+          "package_name": "com.MTS.esay_doctor"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBrRE4a3aIibuJm1Naz1gFRwEYDDMMwrEM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

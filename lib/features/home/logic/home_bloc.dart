@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import '../data/models/specialization_response_model.dart';
 import '../data/repos/home_repo.dart';
 import 'home_event.dart';
 import 'home_state.dart';
@@ -8,6 +9,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc(this._homeRepo) : super(const HomeState.initial()) {
     on<GetSpecializations>(getSpecializations);
   }
+  List<SpecializationsData?>? specializationsList = [];
 
   Future<void> getSpecializations(GetSpecializations event, Emitter<HomeState> emit,) async {
     emit(const HomeState.specializationsLoading());
