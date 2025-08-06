@@ -1,7 +1,7 @@
-part of '../home.dart';
+part of '../../home.dart';
 
-class SpecializationsAndDoctorsBlocBuilder extends StatelessWidget {
-  const SpecializationsAndDoctorsBlocBuilder({super.key});
+class SpecializationsBlocBuilder extends StatelessWidget {
+  const SpecializationsBlocBuilder({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,9 +15,8 @@ class SpecializationsAndDoctorsBlocBuilder extends StatelessWidget {
             specializationsLoading: () {
               return setupLoading();
             },
-            specializationsSuccess: (specializationsResponseModel) {
-              var specializationsList = specializationsResponseModel.specializationsDataList;
-              return setupSuccess(specializationsList);
+            specializationsSuccess: (specializationsDataList) {
+              return setupSuccess(specializationsDataList);
             },
             specializationsError: (errorHandler) => setupError(),
             orElse: () {
@@ -28,27 +27,20 @@ class SpecializationsAndDoctorsBlocBuilder extends StatelessWidget {
   }
 
   Widget setupLoading() {
-    return const SizedBox(
-      height: 100,
-      child: Center(
-        child: CircularProgressIndicator(),
-      ),
+    return Expanded(
+      child:Column(
+        children: [
+          SpecialityShimmerLoading(),
+          verticalSpace(8),
+          DoctorsShimmerLoading(),
+        ],
+      )
     );
   }
 
   Widget setupSuccess(specializationsList) {
-    return Expanded(
-      child: Column(
-        children: [
-          DoctorsSpecialityListView(
-            specializationsDataList: specializationsList ?? [],),
-          verticalSpace(8),
-          DoctorsListView(
-            doctorsList: specializationsList?[0]?.doctorsList,
-          ),
-        ],
-      ),
-    );
+    return SpecialityListView(
+      specializationsDataList: specializationsList ?? [],);
   }
 
   Widget setupError() {
