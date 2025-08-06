@@ -1,4 +1,8 @@
-import 'package:bloc/bloc.dart';
+import 'dart:async';
+
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../core/networking/app_error_handler.dart';
 import '../data/models/specialization_response_model.dart';
 import '../data/repos/home_repo.dart';
 import 'home_event.dart';
@@ -8,6 +12,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   HomeBloc(this._homeRepo) : super(const HomeState.initial()) {
     on<GetSpecializations>(getSpecializations);
+    on<GetDoctorsBySpecializationId>(_onGetDoctorsList);
+
   }
   List<SpecializationsData?>? specializationsList = [];
 
@@ -16,9 +22,14 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
       final response = await _homeRepo.getSpecialization();
       response.when(success: (specializationsResponseModel){
-        emit(HomeState.specializationsSuccess(specializationsResponseModel));
-
-      }, failure: (errorHandler){
+        specializationsList = specializationsResponseModel.specializationsDataList ?? [];
+        emit(HomeState.specializationsSuccess(specializationsList));
+        final firstId = specializationsList?.firstWhere(
+              (element) => element?.id != null,)?.id;
+        if (firstId != null) {
+          add(HomeEvent.getDoctorsBySpecializationId(specializationId: firstId));
+        }
+            }, failure: (errorHandler){
         emit(HomeState.specializationsError(errorHandler));
 
 
@@ -26,4 +37,19 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   }
 
 
+
+  Future<void> _onGetDoctorsList(GetDoctorsBySpecializationId event, Emitter<HomeState> emit) async{
+    final doctorsList = filterSpecializationsListById(event.specializationId);
+
+    if (doctorsList != null && doctorsList.isNotEmpty) {
+      emit(HomeState.doctorsSuccess(doctorsList));
+    } else {
+      emit(HomeState.doctorsError(ErrorHandler.handle('No doctors found.')));
+    }
+  }
+  List<Doctors?>? filterSpecializationsListById(int? specializationId) {
+    return specializationsList
+        ?.firstWhere(
+          (specialization) => specialization?.id == specializationId)?.doctorsList;
+  }
 }

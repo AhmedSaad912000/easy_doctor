@@ -1,4 +1,4 @@
-part of "doctors_list_view.dart";
+part of 'doctors_list_view.dart';
 class DoctorsListViewItem extends StatelessWidget {
   final Doctors? doctorsModel;
   const DoctorsListViewItem({super.key, this.doctorsModel});
